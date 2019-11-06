@@ -1,0 +1,108 @@
+.header {
+    min-height: 100vh;
+    position: relative;
+    background-image: url("../../assets/images/image_1.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.header .caption h1 {
+    margin: 10px 0;
+    font-size: 65px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    word-spacing: 2px;
+    -webkit-animation-delay: .6s;
+    animation-delay: .6s;
+    color: #fff !important;
+    z-index: 9;
+    position: relative;
+}
+.header .caption p {
+    font-size: 18px;
+    font-weight: 300;
+    color: #eee;
+    word-spacing: 2px;
+    -webkit-animation-delay: 1s;
+    animation-delay: 1s;
+    color: #fff !important;
+    z-index: 9;
+    position: relative;
+    margin: 30px 0 60px 0;
+}
+.butn {
+    padding: 12px 35px;
+    background: #fff;
+    border-radius: 30px;
+    border: 1px solid transparent;
+    position: relative;
+    z-index: 3;
+    margin-left: 10px;
+    margin-right: 10px;
+    -webkit-box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+    -webkit-transition: all .4s;
+    transition: all .4s;
+    cursor: pointer;
+    outline: none !important;
+    overflow: hidden;
+    color: #b66dff;
+    text-decoration: none;
+}
+.butn:hover{
+    background: #b66dff;
+    color: #fff;
+} 
+.navbar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    border: 0;
+    background: transparent;
+    z-index: 9;
+    min-height: 70px;
+}
+.navbar .navbar-nav .nav-link {
+    font-size: 17px;
+    font-weight: 500;
+    color: #eee;
+    letter-spacing: .5px;
+    margin: 15px 2px;
+    -webkit-transition: all .5s;
+    transition: all .5s;
+    text-transform: uppercase;
+    border-radius: 100px;
+    padding: 8px 15px;
+}
+.text-white {
+    color: #fff!important;
+}
+span.color {
+    color: #b66dff;
+}
+[data-overlay-dark="7"]:before, [data-overlay-color="7"]:before, [data-overlay-light="7"]:before {
+    opacity: 0.7;
+}
+[data-overlay-dark]:before {
+    background: #0b1520;
+}
+[data-overlay-dark]:before, [data-overlay-color]:before, [data-overlay-light]:before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+.valign {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+h2.text-white {
+    font-size: 35px;
+}

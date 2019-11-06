@@ -1,0 +1,75 @@
+<div class="main-panel">        
+        <div class="content-wrapper custom-wrapper">
+          <div class="page-signup">
+            <h3 class="page-title">
+              Registration
+            </h3>
+          </div>
+          <div class="row">
+            <div class="col-md-6 offset-md-3 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                      <label>First Name</label>
+                      <input type="text" class="form-control" formControlName="firstName" placeholder="First Name" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }">
+                      <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                          <div *ngIf="f.firstName.errors.required">First Name is required</div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name</label>
+                        <input type="text" class="form-control"  formControlName="lastName"  [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" placeholder="Last Name">
+                        <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                            <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+                        </div>
+                      </div>
+                    <div class="form-group">
+                      <label >Company Email</label>
+                      <input type="email" class="form-control" formControlName="email"  [ngClass]="{ 'is-invalid': submitted && f.email.errors }"  placeholder=" Company Email">
+                      <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                          <div *ngIf="f.email.errors.required">Email is required</div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Type</label>
+                        <select class="form-control form-control-lg" formControlName="type" [ngClass]="{ 'is-invalid': submitted && f.type.errors }" >
+                            <option [ngValue]="null">Please select type</option>
+                          <option value="1">Student</option>
+                          <option value="2">Corporate or Govt</option>
+                          <option value="3">Medical</option>
+                          <option value="4">Not a researcher</option>
+                        </select>
+                        <div *ngIf="submitted && f.type.errors" class="invalid-feedback">
+                            <div *ngIf="f.type.errors.required">Type is required</div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                          <label for="password">Password</label>
+                          <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                          <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                              <div *ngIf="f.password.errors.required">Password is required</div>
+                              <div *ngIf="f.password.errors.minlength">Password must be at least 5 characters</div>
+                          </div>
+                      </div>
+                   
+                    <div class="btn-submit"><button [disabled]="loading" type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
+                    <span>Already have account? <a [routerLink]="['/login']">Login</a></span>
+                    </div>
+                    <img *ngIf="loading" class="pl-3" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                    <!-- <span>Already have account <a  [routerLink]="['']" class="btn btn-light">Login</a></span> -->
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:../../partials/_footer.html -->
+        <!-- partial -->
+        <footer class="footer">
+            <div class="d-sm-flex justify-content-center justify-content-sm-between">
+              <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2019 <a href="https://www.bootstrapdash.com/" target="_blank">Research</a>. All rights reserved.</span>
+            </div>
+          </footer>
+      </div>

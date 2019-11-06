@@ -1,0 +1,561 @@
+<div class="container-scroller">
+  <app-header></app-header>
+<div class="container-fluid page-body-wrapper"> 
+  <app-sidebar></app-sidebar>
+     <div class="main-panel">
+          <div class="content-wrapper">
+            <div class="page-header">
+                    <h3 class="page-title">
+                      <span class="page-title-icon bg-gradient-primary text-white mr-2">
+                        <i class="mdi mdi-home"></i>                 
+                      </span>
+                      My Account
+                    </h3>
+            
+              </div>
+
+              <div class="row">
+                <div class="col-md-8">
+                    <div class="profile-intro">
+                      <div class="card space-blk">
+                        <div class="exp-blk">
+                            <div class="card-custom-hdr">
+                              <h4 class="card-title">Overview</h4>
+                              <span *ngIf="info == ''" (click)="openOverview()" class="icon-plus">+</span>
+                              <span *ngIf="info != ''" (click)="openOverview()" >  <i class="mdi mdi-border-color"></i></span>
+                            </div>
+                            <p class="card-description" *ngIf="info != ''">
+                                {{info}}
+                            </p>
+                        </div>
+                      </div>
+
+                      <div class="card space-blk">
+                        <div class="exp-blk">
+                            <div class="skills-list">
+                              <div class="parts">
+                                <span class="num">{{total_researchItems}}</span>
+                                <span class="name">Blogs</span>
+                              </div>
+
+                              <div class="parts">
+                                <span class="num">{{this.totalLikes}}</span>
+                                <span class="name">Likes</span>
+                              </div>
+
+                              <div class="parts">
+                                <span class="num" *ngIf="totalcomments>0">{{totalcomments}}</span>
+                                <span class="num" *ngIf="totalcomments==0">0</span>
+                                <span class="name">Comments</span>
+                              </div>
+
+                              <div class="parts">
+                                  <span class="num">{{this.totalFollowers}}</span>
+                                  <span class="name">Followers</span>
+                                </div>
+
+                            </div>
+                        </div>
+                      </div>
+
+                      <div class="space-blk">
+                        <div class="exp-blk">
+                          <div class="exp-head">
+                            <h5>Skills & Expertise</h5>
+                            <span (click)="addSkillspopup()">+</span>
+                          </div>
+                          <div class="exp-body">
+                            <div class="media border p-3" *ngFor="let sk of skills">
+                              <!-- <img src="https://cdn4.iconfinder.com/data/icons/web-ui-color/128/Account-512.png"> -->
+                              <div class="media-body">
+                                <p>{{sk.skill}}<span>
+                                  <!-- <i class="mdi mdi-border-color"></i> -->
+                                </span></p>
+                                
+                              </div>
+                            </div>
+                          </div>
+                          
+                        </div>
+                    </div>
+                    <div class="card space-blk" >
+                      <div class="exp-blk">
+                          <div class="card-custom-hdr">
+                            <h4 class="card-title">Other Information</h4>
+                            <div class="exp-head">
+                                <span *ngIf="otherInfo == ''" (click)="addOtherinfo()">+</span>
+                                <span *ngIf="otherInfo != ''"  (click)="addOtherinfo()">  <i class="mdi mdi-border-color"></i></span>
+                            </div>
+                            
+                            
+                          </div>
+                          <p class="card-description" [innerHTML]="otherInfo">
+                           {{otherInfo}}
+                          </p>
+                      </div>
+                    </div>
+                    </div>
+                 <div class="blog-outer">
+                    <div class="page-header">
+                        <h3 class="page-title">
+                          <!-- <span class="page-title-icon bg-gradient-primary text-white mr-2">
+                            <i class="mdi mdi-home"></i>                 
+                          </span> -->
+                          Recent Research Items
+                        </h3>
+                    </div>
+                    <div class="card space-blk each-blog" *ngFor="let item of research_items;let i=index;">
+                       <div *ngIf="i<3">
+                        <div class="exp-blk">
+                            <h4 class="card-title">{{item.title}}</h4>
+                            <div [innerHTML]="item.content | slice:0:250"></div>
+                            <a class="btn-links" [routerLink]="['/blog', item.blogId]">Read more >></a>
+                        </div>
+                        </div>
+                      </div>
+                      </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="row">
+                      <div class="col-md-12 space-blk">
+                        <div class="exp-blk">
+                          <div class="exp-head">
+                            <h5>Experience</h5>
+                            <span (click)="openExpPopup()">+</span>
+                          </div>
+                          <div class="exp-body">
+                            <div class="media border p-3" *ngFor="let e of exp">
+                              <!-- <img src="https://cdn4.iconfinder.com/data/icons/web-ui-color/128/Account-512.png" alt="John Doe"> -->
+                              <div class="media-body">
+                                <h5>{{e.position}} <span>
+                                  <!-- <i class="mdi mdi-border-color"></i> -->
+                                </span></h5>
+                                <p>{{e.company}} </p>
+                                <p>Dates Employed {{e.startdate}}-{{e.enddate}}
+                                    
+                                  </p>
+                                  <p>At {{e.location}} </p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 space-blk">
+                        <div class="exp-blk">
+                          <div class="exp-head">
+                            <h5>Education</h5>
+                            <span (click)="openEducationpopup()">+</span>
+                          </div>
+                          <div class="exp-body">
+                            <div class="media border p-3" *ngFor="let edu of education">
+                              <!-- <img src="https://cdn4.iconfinder.com/data/icons/web-ui-color/128/Account-512.png"> -->
+                              <div class="media-body">
+                                <h5>{{edu.school}} <span>
+                                  <!-- <i class="mdi mdi-border-color"></i> -->
+                                </span></h5>
+                                <p>{{edu.degree}}</p>
+                                <p> {{edu.study_type}}
+                                  </p>
+                                  <p>{{edu.start_year}}-{{edu.end_year}}</p>
+                              </div>
+                            </div>
+                          </div>
+                          
+                        </div>
+                    </div>
+        
+                    
+                  </div>
+                </div>
+
+              </div>
+            
+            </div> 
+          <app-footer></app-footer>
+     </div>
+ </div>
+</div>
+
+<div class="modal" style="display: block; background-color: rgba(0, 0, 0, 0.32);"  [style.display]="eduPopup?'block':'none'">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Add Education</h4>
+          <button type="button" class="close" (click)="closeEducationpopup()">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+       <form [formGroup]="addedu" (ngSubmit)="addEducation()">
+
+      <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+                <label for="exampleInputEmail1">School/Unversity</label>
+                <input type="text" class="form-control" formControlName="school"  [ngClass]="{ 'is-invalid': submitted && g.school.errors }" >
+                <div *ngIf="submitted && g.school.errors" class="invalid-feedback">
+                    <div *ngIf="g.school.errors.required">School/Unversity is required</div>
+                </div>
+              </div>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Degree</label>
+                <input type="text" class="form-control" formControlName="degree" >
+              </div>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Study Type</label>
+                <input type="text" class="form-control" formControlName="study">
+                
+              </div>
+          </div>
+        </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="date-sec">
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Start Date</label>
+                        <select class="form-control form-control-lg" formControlName="startyear" >
+                          <option [ngValue]="null">Select Year</option>
+                          <option>2011</option>
+                            <option>2012</option>
+                            <option>2013</option>
+                            <option>2014</option>
+                            <option>2015</option>
+                            <option>2016</option>
+                            <option>2017</option>
+                            <option>2018</option>
+                            <option>2019</option>
+                        </select>
+                      </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                  <div class="date-sec">
+                      <div class="form-group">
+                          <label for="exampleFormControlSelect1">End year</label>
+                          <select class="form-control form-control-lg"  formControlName="endyear">
+                            <option [ngValue]="null">Select Year</option>
+                            <option>2011</option>
+                            <option>2012</option>
+                            <option>2013</option>
+                            <option>2014</option>
+                            <option>2015</option>
+                            <option>2015</option>
+                            <option>2016</option>
+                            <option>2017</option>
+                            <option>2018</option>
+                            <option>2019</option>
+                          </select>
+                          
+                        </div>
+                  </div>
+              </div>
+            </div>
+            
+         <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="submit" [disabled]="disable_btn" class="btn btn-primary">Save</button>
+          <!-- <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button> -->
+        </div>
+
+         </form>
+        </div>
+        
+        
+        
+      </div>
+    </div>
+  </div>
+
+
+
+<div class="modal"  style="display: block; background-color: rgba(0, 0, 0, 0.32);" [style.display]="skill_popup ? 'block' : 'none'" >
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Add Skill</h4>
+          <button type="button" class="close" data-dismiss="modal" (click)="closeskillPopup()">&times;</button>
+        </div>
+        
+        <!-- Modal body -Add skill -->
+        <div class="modal-body">
+
+      <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+                <!-- <label for="exampleInputEmail1">Skill</label> -->
+                <input type="text" class="form-control" [(ngModel)]="skill" placeholder="skill" >
+                <div *ngIf="skillErr" class="error">
+                   Add skill
+                </div>
+              </div>
+          </div>
+      </div>
+
+
+           
+         <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" [disabled]="disable_btn" class="btn btn-primary"(click)="addSkill()">Save</button>
+          <!-- <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button> -->
+        </div>
+        </div>
+        
+        
+        
+      </div>
+    </div>
+  </div>
+
+   <!-- The Modal -->
+   <div class="modal" style="display: block; background-color: rgba(0, 0, 0, 0.32);" [style.display]="exp_popup ? 'block' : 'none'">
+      <div class="modal-dialog">
+        <div class="modal-content">
+        
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Add Experience</h4>
+            <button type="button" class="close" (click)="closeExpPopup()">&times;</button>
+          </div>
+          
+          <!-- Modal body -->
+          <div class="modal-body">
+         <form [formGroup]="addexp" (ngSubmit)="addExperience()">
+
+        <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                  <label for="exampleInputEmail1">Title</label>
+                  <input type="text" class="form-control" formControlName="title"  [ngClass]="{ 'is-invalid': submitted && f.title.errors }" placeholder="Title">
+                  <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+                      <div *ngIf="f.title.errors.required">Title is required</div>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                  <label for="exampleInputEmail1">Company</label>
+                  <input type="text" class="form-control" formControlName="company"  [ngClass]="{ 'is-invalid': submitted && f.company.errors }" placeholder="Company">
+                  <div *ngIf="submitted && f.company.errors" class="invalid-feedback">
+                      <div *ngIf="f.company.errors.required">Comapny is required</div>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                  <label for="exampleInputEmail1">Location</label>
+                  <input type="text" class="form-control" formControlName="location"  [ngClass]="{ 'is-invalid': submitted && f.location.errors }" placeholder="Location">
+                  <div *ngIf="submitted && f.location.errors" class="invalid-feedback">
+                      <div *ngIf="f.location.errors.required">Location is required</div>
+                  </div>
+                </div>
+            </div>
+          </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="date-sec">
+                      <div class="form-group">
+                          <label for="exampleFormControlSelect1">Start Date</label>
+                          <select class="form-control form-control-lg" formControlName="month" [ngClass]="{ 'is-invalid': submitted && f.month.errors }" >
+                            <option [ngValue]="null">Select Month</option>
+                            <option>January</option>
+                            <option>February</option>
+                            <option>March</option>
+                            <option>April</option>
+                            <option>May</option>
+                            <option>June</option>
+                            <option>July</option>
+                            <option>August</option>
+                            <option>September</option>
+                            <option>October</option>
+                            <option>November</option>
+                            <option>December</option>
+                          </select>
+                          <div *ngIf="submitted && f.month.errors" class="invalid-feedback">
+                            <div *ngIf="f.month.errors.required">Month is required</div>
+                        </div>
+                        </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="date-sec">
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1"></label>
+                            <select class="form-control form-control-lg"  formControlName="year" [ngClass]="{ 'is-invalid': submitted && f.year.errors }">
+                              <option [ngValue]="null">Select Year</option>
+                              <option>2011</option>
+                              <option>2012</option>
+                              <option>2013</option>
+                              <option>2014</option>
+                              <option>2015</option>
+                              <option>2015</option>
+                              <option>2016</option>
+                              <option>2017</option>
+                              <option>2018</option>
+                              <option>2019</option>
+                            </select>
+                            <div *ngIf="submitted && f.year.errors" class="invalid-feedback">
+                              <div *ngIf="f.year.errors.required">Year is required</div>
+                          </div>
+                          </div>
+                    </div>
+                </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-6">
+                    <div class="date-sec">
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">End Date</label>
+                            <select class="form-control form-control-lg"  formControlName="enddate" [ngClass]="{ 'is-invalid': submitted && f.enddate.errors }">
+                                <option [ngValue]="null">Select Month</option>
+                              <option>January</option>
+                              <option>February</option>
+                              <option>March</option>
+                              <option>April</option>
+                              <option>May</option>
+                              <option>June</option>
+                              <option>July</option>
+                              <option>August</option>
+                              <option>September</option>
+                              <option>October</option>
+                              <option>November</option>
+                              <option>December</option>
+                            </select>
+                            <div *ngIf="submitted && f.enddate.errors" class="invalid-feedback">
+                              <div *ngIf="f.enddate.errors.required">Month is required</div>
+                          </div>
+                          </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="date-sec">
+                          <div class="form-group">
+                              <label for="exampleFormControlSelect1"></label>
+                              <select class="form-control form-control-lg" formControlName="endyear" [ngClass]="{ 'is-invalid': submitted && f.endyear.errors }">
+                                  <option [ngValue]="null">Select Year</option>
+                                <option>2011</option>
+                                <option>2012</option>
+                                <option>2013</option>
+                                <option>2014</option>    
+                                <option>2015</option>
+                                <option>2016</option>
+                                <option>2017</option>
+                                <option>2018</option>
+                                <option>2019</option>
+                              </select>
+                              <div *ngIf="submitted && f.endyear.errors" class="invalid-feedback">
+                                <div *ngIf="f.endyear.errors.required">Year is required</div>
+                            </div>
+                            </div>
+                      </div>
+                  </div>
+                </div>
+           <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="submit" [disabled]="disable_btn" class="btn btn-primary">Save</button>
+            <!-- <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button> -->
+          </div>
+
+           </form>
+          </div>
+          
+          
+          
+        </div>
+      </div>
+    </div>
+
+
+    <div class="modal"  style="display: block; background-color: rgba(0, 0, 0, 0.32);" [style.display]="info_popup ? 'block' : 'none'" >
+        <div class="modal-dialog">
+          <div class="modal-content">
+          
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Add Overview</h4>
+              <button type="button" class="close" data-dismiss="modal" (click)="closeOverview()">&times;</button>
+            </div>
+            
+            <!-- Modal body -Add Overview -->
+            <div class="modal-body">
+    
+          <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                    <!-- <label for="exampleInputEmail1">Skill</label> -->
+                     <textarea (input)="enableInfobtn()" class="form-control"[(ngModel)]="info" rows="10"></textarea>
+                  </div>
+              </div>
+          </div>
+    
+    
+               
+             <!-- Modal footer -->
+            <div class="modal-footer">
+              <button type="button" [disabled]="info_btn" class="btn btn-primary"(click)="addInfo(infoId)">Save</button>
+              <!-- <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button> -->
+            </div>
+            </div>
+            
+            
+            
+          </div>
+        </div>
+      </div>
+
+
+      <!--   Add Other Information-->
+
+      <div class="modal other-info"  style="display: block; background-color: rgba(0, 0, 0, 0.32);" [style.display]="otherInfoModel ? 'block' : 'none'" >
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+          
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Add Other Information</h4>
+              <button type="button" class="close" data-dismiss="modal" (click)="closeOtherInfo()">&times;</button>
+            </div>
+            
+            <!-- Modal body -Add Overview -->
+            <div class="modal-body">
+    
+          <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                    <!-- <label for="exampleInputEmail1">Skill</label> -->
+                    <ck-editor name="editor" [(ngModel)]="otherInfo" skin="moono-lisa" language="en" ></ck-editor>
+                    <span *ngIf="otherInfoErr" style="color:red">Please add something</span>
+                  </div>
+              </div>
+          </div>
+    
+    
+               
+             <!-- Modal footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary"(click)="addOtherResearchInfo()">Save</button>
+              <!-- <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button> -->
+            </div>
+            </div>
+            
+            
+            
+          </div>
+        </div>
+      </div>

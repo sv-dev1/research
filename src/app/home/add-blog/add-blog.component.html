@@ -1,0 +1,49 @@
+<div class="container-scroller">
+  <app-header></app-header>
+<div class="container-fluid page-body-wrapper"> 
+  <app-sidebar></app-sidebar>
+     <div class="main-panel">
+          <div class="content-wrapper">
+          <div class="page-header">
+                  <h3 class="page-title">
+                    <span class="page-title-icon bg-gradient-primary text-white mr-2">
+                      <i class="mdi mdi-home"></i>                 
+                    </span>
+                    Add Blog
+                  </h3> 
+                </div>
+                <div class="row">
+                    <div class="col-md-12  grid-margin stretch-card">
+                        <div class="card">
+                          <div class="card-body">
+                              
+                               <div class="form-group">
+                                    <label >Title</label>
+                                    <input type="email" class="form-control" [(ngModel)]="title" >
+                                    <div *ngIf="titleError" class="error">
+                                        <div >Title is required</div>
+                                    </div>
+                                  </div>
+                                  
+                                    <div class="form-group">
+                                        <label for="password">Content</label>
+                                        <ck-editor name="editor1" [(ngModel)]="editorValue" skin="moono-lisa" language="en" ></ck-editor>
+                                        <div *ngIf="contentError" class="error" >
+                                            <div >Please enter post content</div>
+                                        </div>
+                                    </div>
+                                
+                                    <div class="btn-submit"> <button (click)="submitblog()" [disabled]="disable_btn" type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
+                                    </div>
+                                
+                                
+                            </div> 
+                          </div> 
+                       </div>       
+              </div>
+                
+                   </div> 
+          <app-footer></app-footer>
+     </div>
+ </div>
+</div>

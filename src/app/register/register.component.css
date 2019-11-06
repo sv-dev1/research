@@ -1,0 +1,50 @@
+.main-panel {width: calc(100% - 0px);}
+.page-signup h3.page-title {
+    text-align: center;
+    padding-bottom: 25px;
+    font-size: 25px;
+    color: #fff;
+}
+
+
+.btn-submit span {
+    display: block;
+    padding: 20px 0 0 0;
+}
+
+.btn-submit {text-align: center;}
+
+
+
+
+
+
+
+
+
+
+.custom-wrapper:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background: #0b15209c;
+}
+.custom-wrapper .col-md-6.offset-md-3.grid-margin.stretch-card {
+    position: relative;
+    z-index: 9;
+}
+.custom-wrapper  {
+    min-height: 100vh;
+    position: relative;
+    background-image: url("../../assets/images/register.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.custom-wrapper .page-signup {
+    position: relative;
+    z-index: 9;
+}

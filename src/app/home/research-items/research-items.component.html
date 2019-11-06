@@ -1,0 +1,52 @@
+<div class="container-scroller">
+  <app-header></app-header>
+<div class="container-fluid page-body-wrapper"> 
+  <app-sidebar></app-sidebar>
+     <div class="main-panel">
+          <div class="content-wrapper">
+          <div class="page-header">
+                  <h3 class="page-title">
+                    <span class="page-title-icon bg-gradient-primary text-white mr-2">
+                      <i class="mdi mdi-home"></i>                 
+                    </span>
+                    Research Items
+                  </h3>
+                  <button class="btn btn-primary"(click)="addresearch()" style="float: right;margin-bottom: 20px;">Add Research Item</button> 
+                
+                </div>
+                <div class="filter-paper"  *ngIf="!loading && research_papers !='' " >
+                  <div class="form-group">
+                      <label for="exampleFormControlSelect1">Filter By Type</label>
+                      <select class="form-control form-control-lg" [(ngModel)]="selectType" (change)="filterType()">
+                        <option value="">Select type</option>
+                        <option value="1">Student</option>
+                        <option value="2">Corporate & Govt.</option>
+                        <option value="3">Medical</option>
+                        <option value="4">Not A Researcher</option>
+                      </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div *ngIf="loading" class="loader-cus"><img src="assets/images/Spin-1s-200px.gif"></div>
+                  <div class="col-12">
+                      <div class="blog-outer" *ngIf="research_papers">
+                          <div class="card space-blk each-blog"  *ngFor="let item of research_papers;let i=index;">
+                            <div class="exp-blk">
+                                
+                                <div *ngIf="item.paper" class="right-img"><img src="assets/images/sample-doc.jpg"></div>
+                                <div class="second-sec">
+                                  <h4 class="card-title">{{item.title}}</h4>
+                                  <p><strong>Author:</strong> {{item.name}}</p>
+                                 <a *ngIf="item.status != false" target="_blank" href="{{img_url}}{{item.paper}}" download> <button class="btn btn-outline-primary exp-blk-btn">Download</button></a>
+                              </div>
+                            </div> 
+                          </div>
+
+                        </div>
+                  </div>
+                    </div>
+                   </div> 
+          <app-footer></app-footer>
+     </div>
+ </div>
+</div>

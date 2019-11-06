@@ -1,0 +1,57 @@
+<div class="container-scroller">
+  <app-header></app-header>
+<div class="container-fluid page-body-wrapper"> 
+  <app-sidebar></app-sidebar>
+     <div class="main-panel">
+          <div class="content-wrapper">
+          <div class="page-header">
+                  <h3 class="page-title">
+                    <span class="page-title-icon bg-gradient-primary text-white mr-2">
+                      <i class="mdi mdi-home"></i>                 
+                    </span>
+                    Add Research Paper
+                  </h3> 
+                </div>
+                <div *ngIf="loading" class="loader-cus"><img src="assets/images/Spin-1s-200px.gif"></div>
+                <div class="row">
+                    
+                    <div class="col-md-12  grid-margin stretch-card" *ngIf="!loading">
+                        <div class="card">
+                          <div class="card-body">
+                            <form [formGroup]="researchItemForm" (ngSubmit)="addResearchItem()">
+                               <div class="form-group">
+                                    <label >Title</label>
+                                    <input type="text" class="form-control" formControlName="title" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.title.errors }" >
+                                    <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+                                      <div *ngIf="f.title.errors.required">Title is required</div>
+                                  </div>
+                                  </div>
+                                  
+                                  <div class="form-group">
+                                    <label>Upload Research Paper</label>
+                                    <input type="file" #paper class="file-upload-default" (change)="fileChange($event)" formControlName="paper" [ngClass]="{ 'is-invalid': submitted && f.paper.errors }" >
+                                    <div class="input-group col-xs-12">
+                                      <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                                      <span class="input-group-append">
+                                        <button class="file-upload-browse btn btn-gradient-primary"(click)="paper.click()"  type="button">Upload</button>
+                                      </span>
+                                    </div>
+                                    <div *ngIf="paperUpload" style="color:red">
+                                      Please upload research paper
+                                  </div>
+                                  </div>
+                                
+                                    <div class="btn-submit"> <button [disabled]="disable_btn" type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
+                                    </div>
+                              </form>  
+                                
+                            </div> 
+                          </div> 
+                       </div>       
+              </div>
+                
+                   </div> 
+          <app-footer></app-footer>
+     </div>
+ </div>
+</div>

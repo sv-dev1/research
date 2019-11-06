@@ -1,0 +1,50 @@
+<div class="container-scroller">
+  <app-header></app-header>
+<div class="container-fluid page-body-wrapper"> 
+  <app-sidebar></app-sidebar>
+     <div class="main-panel">
+          <div class="content-wrapper">
+          <div class="page-header">
+                  <h3 class="page-title">
+                    <span class="page-title-icon bg-gradient-primary text-white mr-2">
+                      <i class="mdi mdi-home"></i>                 
+                    </span>
+                    Conferences
+                  </h3>
+                  <button class="btn btn-primary"(click)="addConference()" style="float: right;margin-bottom: 20px;">Add Conference</button> 
+                
+                </div>
+                <div class="filter-paper"  *ngIf="!loading && conferences !='' " >
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Filter By Type</label>
+                        <select class="form-control form-control-lg" [(ngModel)]="selectType" (change)="filterType()">
+                          <option value="">Select type</option>
+                          <option value="1">Student</option>
+                          <option value="2">Corporate & Govt.</option>
+                          <option value="3">Medical</option>
+                          <option value="4">Not A Researcher</option>
+                        </select>
+                      </div>
+                  </div>
+                <div class="row">
+                    <div *ngIf="loading" class="loader-cus"><img src="assets/images/Spin-1s-200px.gif"></div>
+                  <div class="col-12">
+                    <div class="blog-outer" >
+                        <div class="empty-blog" *ngIf="conferences=='' && !loading"> No Conference meeting yet.</div>
+                      <div class="card space-blk each-blog"  *ngFor="let conf of conferences;let i=index;">
+                        <div *ngIf="conf.status !=0"> 
+                        <div class="exp-blk exp-cus" (click)="openConferenceRoom(conf.cId)">
+                           <p class="card-p"> {{conf.start_date | date: 'MMM d, y'}}</p>
+                            <h4 class="card-h"> {{conf.title}}</h4>
+                            
+                        </div> 
+                      </div>
+                     </div>
+                    </div>
+                  </div>
+                    </div>
+                   </div> 
+          <app-footer></app-footer>
+     </div>
+ </div>
+</div>

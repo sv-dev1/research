@@ -1,0 +1,23 @@
+.nav-link {
+    cursor: pointer;
+}
+
+.sidebar .nav .nav-item.nav-profile .nav-link .nav-profile-image {
+    position: relative;
+}
+
+.sidebar .nav .nav-item.nav-profile .nav-link .nav-profile-image:before {
+    content: "";
+    position: absolute;
+    background: rgba(0, 0, 0, 0);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+
+.sidebar .nav .nav-item.nav-profile .nav-link .nav-profile-image:hover:before {
+    background: rgba(0, 0, 0, 0.25);
+}

@@ -1,0 +1,38 @@
+<div class="container-scroller">
+  <app-admin-header></app-admin-header>
+  <div class="container-fluid page-body-wrapper"> 
+    <app-admin-sidebar></app-admin-sidebar>
+       <div class="main-panel">
+            <div class="content-wrapper pos-rel">
+            <div class="page-header">
+                    <h3 class="page-title">
+                      <span class="page-title-icon bg-gradient-primary text-white mr-2">
+                        <i class="mdi mdi-home"></i>                 
+                      </span>
+                      Conferences
+                    </h3>
+                   
+                    <!-- <button class="btn btn-primary"(click)="addblog()" style="float: right;margin-bottom: 20px;">Add Blog</button>  -->
+                  </div>
+                  <div class="row">
+                    <div *ngIf="loading" class="loader-icon"><img src="assets/images/Spin-1s-200px.gif"></div>
+                  <div class="col-12">
+                    <div class="blog-outer" >
+                      <div class="card space-blk each-blog"  *ngFor="let conf of conferences;let i=index;">
+                        <div class="exp-blk exp-cus">
+                           <!-- <p class="card-p"> </p> -->
+                           <span> <h4 class="card-h"> {{conf.title}}</h4> on {{conf.start_date | date: 'MMM d, y'}} </span>
+                            <button class="approve-rgt btn btn-primary my-pre" *ngIf="conf.status == 0" (click)="approveConference(conf,0)">Approve</button>
+                            <button class="approve-rgt btn btn-primary my-pre" *ngIf="conf.status ==1"(click)="approveConference(conf,1)">Unapprove</button>
+                        </div> 
+                        
+                      </div>
+
+                    </div>
+                  </div>
+                    </div>
+                     </div> 
+            <app-admin-footer></app-admin-footer>
+       </div>
+   </div>
+  </div>

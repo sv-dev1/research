@@ -1,0 +1,58 @@
+<div class="container-scroller">
+  <app-admin-header></app-admin-header>
+  <div class="container-fluid page-body-wrapper"> 
+    <app-admin-sidebar></app-admin-sidebar>
+       <div class="main-panel">
+            <div class="content-wrapper">
+            <div class="page-header">
+                    <h3 class="page-title">
+                      <span class="page-title-icon bg-gradient-primary text-white mr-2">
+                        <i class="mdi mdi-home"></i>                 
+                      </span>
+                      Research Items
+                    </h3>
+                    <div class="filter-user"  *ngIf="!loading" >
+                      <div class="form-group">
+                          <label for="exampleFormControlSelect1">Filter By Type</label>
+                          <select class="form-control form-control-lg" [(ngModel)]="selectType" (change)="filterType()">
+                            <option value="">Select type</option>
+                            <option value="1">Student</option>
+                            <option value="2">Corporate & Govt.</option>
+                            <option value="3">Medical</option>
+                            <option value="4">Not A Researcher</option>
+                          </select>
+                        </div>
+                    </div>
+                    <!-- <button class="btn btn-primary"(click)="addblog()" style="float: right;margin-bottom: 20px;">Add Blog</button>  -->
+                  </div>
+                  <div class="row">
+                    <!-- <div class="blog-outer" *ngIf="!blogs">
+                        <div class="card space-blk each-blog">
+                            <h4 class="card-title"> Add your own blogs</h4>
+                        </div>
+                    </div> -->
+                    <div *ngIf="loading" class="loader-icon"><img src="assets/images/Spin-1s-200px.gif"></div>
+                  <div class="col-12">
+                      <div class="blog-outer" *ngIf="research_papers">
+                          <div class="card space-blk each-blog"  *ngFor="let item of research_papers;let i=index;">
+                            <div class="exp-blk">
+                                
+                                <div *ngIf="item.paper" class="right-img"><img src="assets/images/sample-doc.jpg"></div>
+                                <div class="second-sec">
+                                  <h4 class="card-title">{{item.title}}</h4>
+                                  <p><strong>Author:</strong> {{item.name}}</p>
+                                  <button *ngIf="item.status != true" (click)="showDownload(item)" class="approve-rgt btn btn-primary">Approve</button>
+                                  <button *ngIf="item.status != false" (click)="hideDownload(item)" class="approve-rgt btn btn-primary">Unapprove</button>
+                                 <a *ngIf="item.status != false" target="_blank" href="{{img_url}}{{item.paper}}" download> <button class="btn btn-outline-primary exp-blk-btn">Download</button></a>
+                              </div>
+                            </div> 
+                          </div>
+
+                        </div>
+                  </div>
+                    </div>
+                     </div> 
+            <app-admin-footer></app-admin-footer>
+       </div>
+   </div>
+  </div>

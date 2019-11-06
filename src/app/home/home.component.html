@@ -1,0 +1,71 @@
+<div class="container-scroller">
+    <app-header></app-header>
+  <div class="container-fluid page-body-wrapper"> 
+    <app-sidebar></app-sidebar>
+       <div class="main-panel">
+            <div class="content-wrapper">
+            <div class="page-header">
+                    <h3 class="page-title">
+                      <span class="page-title-icon bg-gradient-primary text-white mr-2">
+                        <i class="mdi mdi-home"></i>                 
+                      </span>
+                      Dashboard
+                    </h3>
+                    <button class="btn btn-primary"(click)="addConference()" style="float: right;margin-bottom: 20px;">Add Conference</button> 
+                  </div>
+                  <div class="row">
+                    <div *ngIf="loading" class="loader-cus"><img src="assets/images/Spin-1s-200px.gif"></div>
+                    <div class="col-8">
+                      
+                        <div class="blog-outer" *ngIf="!searchResult">
+                            <div class="empty-blog" *ngIf="blogs=='' && !loading"> No blog posts available yet.</div>
+                            <div class="card space-blk each-blog"  *ngFor="let blog of blogs;let i=index;">
+                              <div class="exp-blk">
+                                  <h4 class="card-title">{{blog.title}}</h4>
+                                  <div [innerHTML]="blog.content | slice:0:250"></div>
+                                  <a class="btn-links" [routerLink]="['/blog', blog.blogId]">Read more >></a>
+                              </div> 
+                            </div>
+  
+                          </div>
+
+                          <div class="blog-outer search" *ngIf="searchResult">
+                            <div class="card space-blk each-blog"  *ngFor="let blog of searchdata;let i=index;">
+                              <div class="exp-blk">
+                                  <h4 class="card-title">{{blog.title}}</h4>
+                                  <div [innerHTML]="blog.content | slice:0:250"></div>
+                                  <a class="btn-links" [routerLink]="['/blog', blog.blog_id]" >Read more >></a>
+                                  
+                              </div> 
+                            </div>
+  
+                          </div>
+                    </div>
+
+                    <div class="col-4">
+                        <div class="card name-outer" *ngIf="researchers !=''">
+                          <div class="right-side-sec">
+                            <h4 class="card-title">Other Researchers</h4>
+                          </div>
+                            <div class="pic-name-box">
+                              <ng-container *ngFor="let user of researchers">
+                                <div class="parts" *ngIf="user.id != userId">
+                                  <img *ngIf="profile_pic_default" src="{{img_url}}/research/uploads/9155719756" />
+                                  <img *ngIf="!profile_pic_default && user.profile_pic =='' " src="{{img_url}}/research/uploads/9155719756" />
+                                  <img *ngIf="user.profile_pic !='' && !profile_pic_default" src="{{img_url}}{{user.profile_pic}}" />
+                                  <p class="name" (click)="openResearcherProfile(user.id)">{{user.firstName}}</p>
+                                </div>
+                              </ng-container>
+                            </div>
+                          </div>
+
+                    </div>
+
+
+                      </div>
+                 
+                     </div> 
+            <app-footer></app-footer>
+       </div>
+   </div>
+</div>

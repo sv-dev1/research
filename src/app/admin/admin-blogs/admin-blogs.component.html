@@ -1,0 +1,47 @@
+<div class="container-scroller">
+  <app-admin-header></app-admin-header>
+  <div class="container-fluid page-body-wrapper"> 
+    <app-admin-sidebar></app-admin-sidebar>
+       <div class="main-panel">
+            <div class="content-wrapper pos-rel">
+            <div class="page-header">
+                    <h3 class="page-title">
+                      <span class="page-title-icon bg-gradient-primary text-white mr-2">
+                        <i class="mdi mdi-home"></i>                 
+                      </span>
+                      Blogs
+                    </h3>
+                    <!-- <button class="btn btn-primary"(click)="addblog()" style="float: right;margin-bottom: 20px;">Add Blog</button>  -->
+                  </div>
+                  <div class="row">
+                    <div class="col-12">
+                        <div class="blog-outer" *ngIf="!searchResult">
+                            <div class="card space-blk each-blog"  *ngFor="let blog of blogs;let i=index;">
+                              <div class="exp-blk">
+                                  <h4 class="card-title">{{blog.title}}</h4>
+                                  <div [innerHTML]="blog.content | slice:0:250"></div>
+                                  <a class="btn-links" [routerLink]="['/admin/blog', blog.blogId]">Read more >></a>
+                              </div> 
+                            </div>
+  
+                          </div>
+
+                          <div class="blog-outer search" *ngIf="searchResult">
+                              <div class="card space-blk each-blog"  *ngFor="let blog of searchdata;let i=index;">
+                                <div class="exp-blk">
+                                    <h4 class="card-title">{{blog.title}}</h4>
+                                    <div [innerHTML]="blog.content | slice:0:250"></div>
+                                    <a class="btn-links" [routerLink]="['/admin/blog', blog.blog_id]" >Read more >></a>
+                                    
+                                </div> 
+                              </div>
+    
+                            </div>
+                    </div>
+                      </div>
+                      <div *ngIf="loading" class="loader-icon"><img src="assets/images/Spin-1s-200px.gif"></div>
+                     </div> 
+            <app-admin-footer></app-admin-footer>
+       </div>
+   </div>
+  </div>

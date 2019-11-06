@@ -1,0 +1,17 @@
+.content-wrapper {
+    position: relative;
+}
+.loader-cus {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    z-index: 9;
+    width: 100%;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.loader-cus img {
+    max-width: 90px;
+}

@@ -1,0 +1,40 @@
+<div class="container-scroller">
+  <app-header></app-header>
+<div class="container-fluid page-body-wrapper"> 
+  <app-sidebar></app-sidebar>
+     <div class="main-panel">
+          <div class="content-wrapper">
+          <div class="page-header">
+                  <h3 class="page-title">
+                    <span class="page-title-icon bg-gradient-primary text-white mr-2">
+                      <i class="mdi mdi-home"></i>                 
+                    </span>
+                    Blogs
+                  </h3>
+                  <button class="btn btn-primary"(click)="addblog()" style="float: right;margin-bottom: 20px;">Add Blog</button> 
+                </div>
+                <div class="row">
+                    <!-- <div class="blog-outer" *ngIf="!blogs">
+                        <div class="card space-blk each-blog">
+                            <h4 class="card-title"> Add your own blogs</h4>
+                        </div>
+                    </div> -->
+                    <div *ngIf="loading" class="loader-cus"><img src="assets/images/Spin-1s-200px.gif"></div>
+                  <div class="col-12">
+                      <div class="blog-outer">
+                          <div class="card space-blk each-blog"  *ngFor="let blog of blogs;let i=index;">
+                            <div class="exp-blk">
+                                <h4 class="card-title">{{blog.title}}</h4>
+                                <div [innerHTML]="blog.content | slice:0:250"></div>
+                                <a class="btn-links" [routerLink]="['/blog', blog.blogId]">Read more >></a>
+                            </div> 
+                          </div>
+
+                        </div>
+                  </div>
+                    </div>
+                   </div> 
+          <app-footer></app-footer>
+     </div>
+ </div>
+</div>

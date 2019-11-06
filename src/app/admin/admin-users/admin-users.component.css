@@ -1,0 +1,33 @@
+.error{color:red}
+
+.filter-user .form-group {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.filter-user .form-group select{
+    width:320px;
+    margin-left: 10px;
+}
+
+.loader-icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.45);
+    font-size: 52px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    color: #fff;
+} 
+
+.pos-rel{
+    position: relative;
+}
+.loader-icon img {
+    max-width: 102px;
+}

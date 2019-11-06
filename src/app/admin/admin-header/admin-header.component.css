@@ -1,0 +1,18 @@
+.d-flexs{
+    display: flex;
+    align-items: center;
+    height:70px;
+}
+
+.d-flexs .input-group {
+    border: solid 1px #efe8f3;
+    flex-direction: row-reverse;
+}
+
+.d-flexs input[type="text"] {
+    height: 45px;
+}
+
+.d-flexs .input-group .input-group-prepend {
+    border-left: solid 1px #f2edf3;
+}

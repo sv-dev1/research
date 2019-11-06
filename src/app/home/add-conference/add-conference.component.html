@@ -1,0 +1,118 @@
+<div class="container-scroller">
+  <app-header></app-header>
+<div class="container-fluid page-body-wrapper"> 
+  <app-sidebar></app-sidebar>
+     <div class="main-panel">
+          <div class="content-wrapper">
+          <div class="page-header">
+                  <h3 class="page-title">
+                    <span class="page-title-icon bg-gradient-primary text-white mr-2">
+                      <i class="mdi mdi-home"></i>                 
+                    </span>
+                    Add Conference
+                  </h3>
+                
+                </div>
+                
+                <div class="row">
+                    <div *ngIf="loading" class="loader-cus"><img src="assets/images/Spin-1s-200px.gif"></div>
+                    <div class="col-12 grid-margin stretch-card">
+                      <div class="card" *ngIf="!loading">
+                        <div class="card-body">
+                          <form class="demo-class" [formGroup]="conferenceForm" (ngSubmit)="onSubmit()">
+                            <div class="form-group">
+                              <label for="exampleInputName1">Conference Title</label>
+                              <input type="text" class="form-control"  placeholder=" Title" formControlName="title" [ngClass]="{ 'is-invalid': submitted && f.title.errors }">
+                              <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+                                <div *ngIf="f.title.errors.required">Conference title is required</div>
+                            </div>
+                            </div>
+                            <div class="form-group">
+                              <label for="exampleTextarea1">About Conference</label>
+                              <textarea class="form-control test-form-control"  rows="4" placeholer="Description" formControlName="description" [ngClass]="{ 'is-invalid': submitted && f.description.errors }"></textarea>
+                              <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+                                <div *ngIf="f.description.errors.required">Description is required</div>
+                            </div>
+                            </div>
+                            <div class="form-group">
+                              <label for="exampleInputEmail3"> Inquiry Email address</label>
+                              <input type="email" class="form-control" placeholder="Email" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                              <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                <div *ngIf="f.email.errors.required">Email is required</div>
+                            </div>
+                            </div>
+                            <div class="form-group">
+                              <label for="exampleInputCity1">Organizer Name</label>
+                              <input type="text" class="form-control" placeholder="Organizer Name" formControlName="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+                              <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                                <div *ngIf="f.name.errors.required">Organizer Name is required</div>
+                            </div>
+                            </div>
+                            <div class="form-group">
+                              <label for="exampleInputCity1">Contact Person</label>
+                              <input type="text" class="form-control" placeholder="Contact Person" formControlName="person" [ngClass]="{ 'is-invalid': submitted && f.person.errors }">
+                              <div *ngIf="submitted && f.person.errors" class="invalid-feedback">
+                                <div *ngIf="f.person.errors.required">Contact Person is required</div>
+                            </div>
+                            </div>
+
+                            <div class="form-group">
+            
+                                <label for="exampleInputCity1">Conference Website</label>
+                                <div formArrayName="sites">
+                                <div class="cus-margin" *ngFor="let item of websites.controls; let pointIndex=index" [formGroupName]="pointIndex">
+                                    <input type="text" class="form-control" placeholder="Website URL" formControlName="website">
+                                </div>
+                                  <button type="button" (click)="addMoreSites()" class="btn btn-link btn-fw">Add more websites</button>
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <label for="exampleInputCity1">Deadline for conference research paper submission</label>
+                              <ng-datepicker [options]="options" class="form-control" formControlName="paper_date" placeholder="Last Date For Paper Submission"  [ngClass]="{ 'is-invalid': submitted && f.paper_date.errors }">
+                                </ng-datepicker>
+                                <div *ngIf="submitted && f.paper_date.errors" class="invalid-feedback">
+                                    <div *ngIf="f.paper_date.errors.required">Last submission date is required</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div formArrayName="events">
+                                    <label for="exampleInputCity1">Events (optional)</label>
+                                    <div class="cus-margin" *ngFor="let item of event.controls; let pointIndex=index" [formGroupName]="pointIndex">
+                                    <input type="text" class="form-control" formControlName="events" placeholder="Events" formControlName="events">
+                                    </div>
+                                    <button type="button" (click)="addMoreEvents()" class="btn btn-link btn-fw">Add more events</button>
+                             </div>
+                            </div>
+                            <div class="form-group">
+                              <label for="exampleInputCity1">Start Date</label>
+                              <ng-datepicker [options]="options" class="form-control" formControlName="startdate" placeholder="Start Date"  [ngClass]="{ 'is-invalid': submitted && f.startdate.errors }">
+                                </ng-datepicker>
+                                <div *ngIf="submitted && f.startdate.errors" class="invalid-feedback">
+                                    <div *ngIf="f.startdate.errors.required">Start date is required</div>
+                                </div>
+                              
+                            </div>
+                            
+                            <div class="form-group">
+                              <label for="exampleInputCity1">End Date</label>
+                              <ng-datepicker [options]="options" class="form-control" formControlName="enddate" placeholder="End date"  [ngClass]="{ 'is-invalid': submitted && f.enddate.errors }">
+                                </ng-datepicker>
+                                <div *ngIf="submitted && f.enddate.errors" class="invalid-feedback">
+                                    <div *ngIf="f.enddate.errors.required">End date is required</div>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
+                            <button type="reset" class="btn btn-light">Cancel</button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                    </div>
+                   </div> 
+          <app-footer></app-footer>
+     </div>
+ </div>
+</div>
+

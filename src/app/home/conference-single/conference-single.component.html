@@ -1,0 +1,108 @@
+<div class="container-scroller">
+    <app-header></app-header>
+  <div class="container-fluid page-body-wrapper"> 
+    <app-sidebar></app-sidebar>
+       <div class="main-panel cus-pannel">
+            <div class="content-wrapper">
+            <div class="page-header">
+                <h3 class="page-title" *ngIf="conference.title != undefined ">
+                    <span class="page-title-icon bg-gradient-primary text-white mr-2">
+                      <i class="mdi mdi-home"></i>                 
+                    </span>
+                    {{conference.title}}
+                  </h3>
+
+                  </div>
+                  <div class="row">
+                      <div *ngIf="loading" class="loader-cus"><img src="assets/images/Spin-1s-200px.gif"></div>
+                    <div class="col-md-8">
+                        <div class="profile-intro">
+                          <div class="card space-blk" *ngIf="conference.description != ''">
+                            <div class="exp-blk">
+                                <div class="card-custom-hdr">
+                                  <h4 class="card-title">About Conference </h4>
+                                </div>
+                                <p class="card-description">
+                                    {{conference.description}}
+                                </p>
+                            </div>
+                            
+                          </div>         
+                          
+                          <div class="card space-blk" *ngIf="conference.description != ''">
+                              <div class="exp-blk">
+                                  <div class="card-custom-hdr">
+                                    <h4 class="card-title">Conference Websites </h4>
+                                  </div>
+                                  <p class="card-description" *ngFor="let site of site_urls">
+                                     <a href="{{site}}" target="_blank">{{site}}</a>
+                                  </p>
+                              </div>
+                              
+                            </div>
+                            
+                            <div class="card space-blk" *ngIf="conference.description != ''">
+                                    <div class="exp-blk">
+                                        <div class="card-custom-hdr">
+                                          <h4 class="card-title">Deadline for conference research paper submission </h4>
+                                        </div>
+                                        <p class="card-description">
+                                           {{conference.paper_submission_lastdate|date:mediumDate}}
+                                        </p>
+                                    </div>
+                                    
+                                  </div>  
+    
+                        </div>
+                     
+                    </div>
+    
+                    <div class="col-md-4">
+                        <div class="row">
+                          <div class="col-md-12 space-blk" *ngIf="conference.start_date !=''">
+                            <div class="exp-blk">
+                              <div class="exp-head" *ngIf="conference.start_date !=''">
+                                <h5>Conference Start Date:</h5>
+                                {{conference.start_date |date:mediumDate}}
+                              </div>
+                              <div class="exp-head" *ngIf="conference.end_date !=''">
+                                  <h5>Conference End Date:</h5>
+                                  {{conference.end_date |date:mediumDate}}
+                                </div>
+                                <div class="exp-head" *ngIf="conference.contact_person !=''">
+                                    <h5>Contact Person:</h5>
+                                    {{conference.contact_person }}
+                                  </div>
+                                  <div class="exp-head" *ngIf="conference.inquiry_email !=''">
+                                      <h5>Inquiry_email:</h5>
+                                      {{conference.inquiry_email}}
+                                    </div>
+                                    <div class="exp-head" *ngIf="conference.organiser !=''">
+                                        <h5>Conference Organized By:</h5>
+                                        {{conference.organiser}}
+                                      </div>
+                             
+                            </div>
+                        </div>  
+
+                        <div class="col-md-12 space-blk" *ngIf="events !=''" >
+                            <div class="exp-blk">
+                                <div class="media-body">
+                                    <h5>Events: <span>
+                                    </span></h5>
+                                    <div *ngFor="let evt of events">
+                                    <p>{{evt}}</p>
+                                     </div>
+                                  </div>
+                            </div>
+                        </div>  
+                        
+                      </div>
+                    </div>
+    
+                  </div>
+                     </div> 
+            <app-footer></app-footer>
+       </div>
+   </div>
+  </div>

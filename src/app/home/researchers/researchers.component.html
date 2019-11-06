@@ -1,0 +1,160 @@
+<div class="container-scroller">
+  <app-header></app-header>
+<div class="container-fluid page-body-wrapper"> 
+  <app-sidebar></app-sidebar>
+     <div class="main-panel">
+          <div class="content-wrapper">
+          <div class="page-header">
+                  <h3 class="page-title">
+                      <img *ngIf="profile_pic != ''" class="research-pic" src="{{profile_pic}}">
+                      <!-- <img *ngIf="profile_pic == ''" class="research-pic" src="{{img_url}}/research/uploads/8483388954"> -->
+                    {{name}}
+                  </h3> 
+                  <button *ngIf="following !=true" (click)="followResearcher()" type="button" class="btn btn-outline-primary btn-fw">Follow</button>
+                  <button *ngIf="following !=false"  type="button" class="btn btn-outline-primary btn-fw">Following</button>
+                </div>
+                <div class="row">
+                  <div class="col-md-8">
+                      <div class="profile-intro">
+                        <div class="card space-blk" *ngIf="overview != ''">
+                          <div class="exp-blk">
+                              <div class="card-custom-hdr">
+                                <h4 class="card-title">Overview</h4>
+                              </div>
+                              <p class="card-description">
+                                  {{overview}}
+                              </p>
+                          </div>
+                        </div>
+  
+                        <div class="card space-blk">
+                          <div class="exp-blk">
+                              <div class="skills-list">
+                                <div class="parts">
+                                  <span class="num">{{total_researchItems}}</span>
+                                  <span class="name">Research Items</span>
+                                </div>
+  
+                                <div class="parts">
+                                  <span class="num">{{this.totalLikes}}</span>
+                                  <span class="name">Likes</span>
+                                </div>
+  
+                                <div class="parts">
+                                  <span class="num" *ngIf="totalcomments>0">{{totalcomments}}</span>
+                                  <span class="num" *ngIf="totalcomments==0">0</span>
+                                  <span class="name">Comments</span>
+                                </div>
+
+                                <div class="parts">
+                                  <span class="num">{{this.totalFollowers}}</span>
+                                  <span class="name">Followers</span>
+                                </div>
+  
+                              </div>
+                          </div>
+                        </div>
+  
+                        <div class="space-blk" *ngIf="skills !=''">
+                          <div class="exp-blk">
+                            <div class="exp-head">
+                              <h5>Skills & Expertise</h5>
+                            </div>
+                            <div class="exp-body">
+                              <div class="media border p-3" *ngFor="let sk of skills">
+                                <!-- <img src="https://cdn4.iconfinder.com/data/icons/web-ui-color/128/Account-512.png"> -->
+                                <div class="media-body">
+                                  <p>{{sk.skill}}<span>
+                                    <!-- <i class="mdi mdi-border-color"></i> -->
+                                  </span></p>
+                                  
+                                </div>
+                              </div>
+                            </div>
+                            
+                          </div>
+                      </div>
+                      <div class="card space-blk" *ngIf="otherInfo !=''">
+                          <div class="exp-blk">
+                              <div class="card-custom-hdr">
+                                <h4 class="card-title">Other Information</h4>
+                                <div class="exp-head">
+                                </div>
+                              </div>
+                              <p class="card-description" [innerHTML]="otherInfo">
+                               {{otherInfo}}
+                              </p>
+                          </div>
+                        </div>
+                      </div>
+                   <div class="blog-outer">
+                      <div class="page-header">
+                          <h3 class="page-title" *ngIf="research_items != ''">
+                            Recent Research Items
+                          </h3>
+                      </div>
+                      <div class="card space-blk each-blog" *ngFor="let item of research_items;let i=index;">
+                         <div *ngIf="i<3">
+                          <div class="exp-blk">
+                              <h4 class="card-title">{{item.title}}</h4>
+                              <div [innerHTML]="item.content | slice:0:250"></div>
+                              <a class="btn-links" [routerLink]="['/blog', item.blogId]">Read more >></a>
+                          </div>
+                          </div>
+                        </div>
+                        </div>
+                  </div>
+  
+                  <div class="col-md-4">
+                      <div class="row">
+                        <div class="col-md-12 space-blk">
+                          <div class="exp-blk">
+                            <div class="exp-head">
+                              <h5>Experience</h5>
+                            </div>
+                            <div class="exp-body">
+                              <div class="media border p-3" *ngFor="let e of exp">
+                                <div class="media-body">
+                                  <h5>{{e.position}} <span>
+                                  </span></h5>
+                                  <p>{{e.company}} </p>
+                                  <p>Dates Employed {{e.startdate}}-{{e.enddate}}
+                                      
+                                    </p>
+                                    <p>At {{e.location}} </p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                      <div class="col-md-12 space-blk">
+                          <div class="exp-blk">
+                            <div class="exp-head">
+                              <h5>Education</h5>
+                            </div>
+                            <div class="exp-body">
+                              <div class="media border p-3" *ngFor="let edu of education">
+                                <div class="media-body">
+                                  <h5>{{edu.school}} <span>
+                                  </span></h5>
+                                  <p>{{edu.degree}}</p>
+                                  <p> {{edu.study_type}}
+                                    </p>
+                                    <p>{{edu.start_year}}-{{edu.end_year}}</p>
+                                </div>
+                              </div>
+                            </div>
+                            
+                          </div>
+                      </div>
+          
+                      
+                    </div>
+                  </div>
+  
+                </div>
+                   </div> 
+          <app-footer></app-footer>
+     </div>
+ </div>
+</div>
